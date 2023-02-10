@@ -63,8 +63,8 @@ public class JwtSuccessHandler implements AuthenticationSuccessHandler {
         response.setHeader("RF_TOKEN", refreshToken);
 
         Map<String, String> responseMap = new HashMap<>();
-        responseMap.put("AT_TOKEN", MYKEY + " " + accessToken);
-        responseMap.put("RT_TOKEN", MYKEY + " " + refreshToken);
+        responseMap.put("AC_TOKEN", MYKEY + " " + accessToken);
+        responseMap.put("RF_TOKEN", MYKEY + " " + refreshToken);
         new ObjectMapper().writeValue(response.getWriter(), responseMap);
         //response에 반환함
     }

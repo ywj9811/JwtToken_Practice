@@ -8,6 +8,7 @@ import com.example.jwt.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 import java.util.Map;
 
 import static com.example.jwt.config.secretKeys.TK_HEADER.*;
@@ -47,8 +49,8 @@ public class RestApiController {
 
     @GetMapping("/v1/user")
     public String user(Authentication authentication) {
-        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-        System.out.println("authentication : " + principalDetails);
+        Object principal = authentication.getPrincipal();
+        System.out.println("authentication : " + principal);
         return "user";
     }
     @GetMapping("/v1/manager")

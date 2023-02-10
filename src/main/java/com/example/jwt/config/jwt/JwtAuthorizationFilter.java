@@ -77,6 +77,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 errorResponse.put(401, "Access Token이 만료되었습니다.");
                 new ObjectMapper().writeValue(response.getWriter(), errorResponse);
             } catch (Exception e) {
+                e.printStackTrace();
                 log.info("CustomAuthorizationFilter : JWT 토큰이 잘못되었습니다. message : {}", e.getMessage());
                 response.setStatus(400);
                 response.setContentType(APPLICATION_JSON_VALUE);
